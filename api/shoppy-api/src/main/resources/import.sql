@@ -1,0 +1,1 @@
+INSERT INTO items(name, price) VALUES ('Apple', 1.2), ('Banana', 5.3), ('Mango', 5.2);

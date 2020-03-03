@@ -1,0 +1,10 @@
+
+<div *ngFor="let item of items;">
+<h3>
+    <a [title]="item.name + ' details'" [routerLink]="['/items', item.id]">
+     {{ item.name }}
+    </a>
+</h3>
+</div>
+<!-- https://angular.io/start/start-routing -->
+<!-- https://gkemayo.developpez.com/tutoriels/java/tutoriel-sur-creation-application-web-avec-angular7-et-spring-boot-2/?page=objectifs-du-front-end -->

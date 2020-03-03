@@ -1,0 +1,5 @@
+<nav>
+    <a *ngIf="isRouteAllowed('items')" routerLink="/items" routerLinkActive="active">List</a>
+    <a *ngIf="isRouteAllowed('create')" routerLink="/create" routerLinkActive="active">Create</a>
+</nav>
+<router-outlet></router-outlet>

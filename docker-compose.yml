@@ -1,0 +1,62 @@
+version: '3'
+
+volumes:
+  postgres_data:
+      driver: local
+      
+services:
+  postgres:
+      image: postgres
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_DB: keycloak
+        POSTGRES_USER: keycloak
+        POSTGRES_PASSWORD: password
+
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      - TZ=Europe/Paris
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=adminadmin
+      - DB_VENDOR=POSTGRES
+      - DB_ADDR=postgres
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_SCHEMA=public
+      - DB_PASSWORD=password
+    depends_on:
+      - postgres
+    ports:
+        - "8081:8080"
+
+  api:
+    build: api/shoppy-api
+    image: shoppy/api:1.0.0
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Paris
+    ports:
+        - "9000:9000"
+        
+  ui:
+    build: ui
+    image: shoppy/ui:1.0.0
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Paris
+    ports:
+        - "8085:8080"
+        
+  reverse-proxy:
+    build: reverse_proxy
+    image: shoppy/reverse-proxy:1.0.0
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Paris
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+      - ui

@@ -20,14 +20,11 @@ export class AppAuthGuard extends KeycloakAuthGuard implements CanActivate {
       console.log('User roles coming after login from keycloak :', this.roles);
       const requiredRoles = route.data.roles;
       const granted = this.isRouteAllowed(route.data.roles);
-      if (granted === false) {
-        this.router.navigate(['/']);
-      }
       resolve(granted);
 
     });
   }
-
+  
   isRouteAllowed(requiredRoles: string[]): boolean {
     let granted = false;
     if (!this.roles) {

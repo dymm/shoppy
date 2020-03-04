@@ -12,25 +12,25 @@ const routes: Routes = [
     redirectTo: 'items',
     pathMatch: 'full',
     canActivate: [AppAuthGuard],
-    data: { roles: ['shopper']}
+    data: { roles: ['shoppy-client']}
   },
   {
     path: 'items',
     component: ItemListComponent,
     canActivate: [AppAuthGuard],
-    data: { roles: ['shopper']}
+    data: { roles: ['shoppy-client']}
   },
   {
     path: 'items/:itemId',
     component: ItemDetailComponent,
     canActivate: [AppAuthGuard],
-    data: { roles: ['shopper']}
+    data: { roles: ['shoppy-client']}
   },
   {
     path: 'create',
     component: ItemCreateComponent,
     canActivate: [AppAuthGuard],
-    data: { roles: ['shop_owner']}
+    data: { roles: ['shoppy-owner']}
   },
 ];
 

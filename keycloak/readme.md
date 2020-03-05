@@ -87,13 +87,21 @@ The `Web Origins` is set to *. This will allow the Cross Origin Resource Sharing
 
 Then click on the `Save` button at be bottom of the form.
 
-## Create a role
+## Roles
+
+### Create a role in the realms
 
 ![image](images/5_1_role_list.png)
 
 From the `Roles` view create a new one by clicking the `Add Role` buton. Create a `shoppy-client` role.
 
-## Create a group for users
+### Create a role for a client
+
+A role can be created only for a specific client. The client roles can be created in the `Roles` tab of a client details.
+
+## Groups
+
+### Create a group for users
 
 ![image](images/6_1_create_group.png)
 
@@ -106,6 +114,16 @@ In the `Client Roles` drop box, choose `account` and assign `view-profile` role.
 
 ![image](images/6_2_group_role_mappings.png)
 
+A client role can be added too by naming the client in the `Client Roles` drop box.
+
+![image](images/6_3_group_role_mappings.png)
+
+### Set a default group
+
+When creating new users some default groups can be joined automatically by selecting them in the Groups `Default Groups` tab.
+
+![image](image/7_2_default_client_group.png)
+
 ## Create a user
 
 From the `User` view create a new user following the [official documentation](https://www.keycloak.org/docs/latest/server_admin/#_create-new-user).
@@ -115,6 +133,7 @@ Under the `Groups` tab, from the `Avaliable Groups` select the `shoppy-group` an
 ![image](images/7_1_client_group.png)
 
 By doing this, the roles assigned to the group will be also assigned to this user. You can check that under the `Role Mappings` tab in the `Effective Roles` list.
+
 
 ## Test with Postman
 

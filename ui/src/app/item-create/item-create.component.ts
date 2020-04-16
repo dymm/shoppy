@@ -20,10 +20,7 @@ export class ItemCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  onCreate() {
-    this.api.create( {name: this.itemForm.controls["name"].value, price:this.itemForm.controls["price"].value} as Item).subscribe(
+    this.api.create({ name: this.itemForm.controls['name'].value, price: this.itemForm.controls['price'].value } as Item).subscribe(
       () => {
         this.router.navigate(['/']);
       },
@@ -32,4 +29,5 @@ export class ItemCreateComponent implements OnInit {
       }
     );
   }
+
 }

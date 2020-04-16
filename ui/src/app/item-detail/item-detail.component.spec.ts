@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ItemDetailComponent } from './item-detail.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ItemsControllerService, Item } from 'src/typescript-angular-client';
+import { Observable, of } from 'rxjs';
 
 describe('ItemDetailComponent', () => {
   let component: ItemDetailComponent;
@@ -8,9 +11,15 @@ describe('ItemDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemDetailComponent ]
+      declarations: [ItemDetailComponent],
+      imports: [
+        RouterTestingModule,
+      ],
+      providers: [
+        { provide: ItemsControllerService, useClass: FakeItemsControllerService },
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -23,3 +32,9 @@ describe('ItemDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+class FakeItemsControllerService {
+  public getById(id: string, observe?: 'body', reportProgress?: boolean): Observable<Item> {
+    return of<Item>({});
+  }
+}

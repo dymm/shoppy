@@ -24,7 +24,7 @@ export class AppAuthGuard extends KeycloakAuthGuard implements CanActivate {
 
     });
   }
-  
+
   isRouteAllowed(requiredRoles: string[]): boolean {
     let granted = false;
     if (!this.roles) {

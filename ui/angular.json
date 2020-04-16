@@ -13,7 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/shoppy-ui",
+            "outputPath": "dist/ui",
+            "baseHref": "/ui/",
+            "deployUrl": "/ui/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

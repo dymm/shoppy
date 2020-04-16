@@ -122,7 +122,7 @@ A client role can be added too by naming the client in the `Client Roles` drop b
 
 When creating new users some default groups can be joined automatically by selecting them in the Groups `Default Groups` tab.
 
-![image](image/7_2_default_client_group.png)
+![image](images/7_2_default_client_group.png)
 
 ## Create a user
 

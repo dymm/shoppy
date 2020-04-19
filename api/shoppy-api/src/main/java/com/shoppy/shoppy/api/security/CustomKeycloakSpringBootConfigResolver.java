@@ -1,4 +1,5 @@
-package com.shoppy.shoppy.security;
+package com.shoppy.shoppy.api.security;
+
 
 import org.keycloak.adapters.KeycloakDeployment;
 import org.keycloak.adapters.KeycloakDeploymentBuilder;

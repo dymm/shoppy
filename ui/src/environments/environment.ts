@@ -5,7 +5,7 @@
 import { KeycloakConfig } from 'keycloak-angular';
 
 const keycloakConfig: KeycloakConfig = {
-  url: 'http://localhost:8081/auth',
+  url: 'http://localhost/auth',
   realm: 'shoppy',
   clientId: 'shoppy-ui',
 };
@@ -13,7 +13,7 @@ const keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: false,
   keycloak: keycloakConfig,
-  apiUrl : 'http://localhost:9000/api',
+  apiUrl: 'http://localhost:9000/api',
 };
 
 /*

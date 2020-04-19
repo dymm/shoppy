@@ -1,2 +1,26 @@
 server:
   port: 9000
+logging:
+  level:
+    root: DEBUG
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+
+# Keycloak
+keycloak:
+  auth-server-url: http://localhost/auth
+  realm: shoppy
+  resource: shoppy-api
+  bearer-only: true
+  confidential-port: 0
+  use-resource-role-mappings: true
+  principal-attribute: preferred_username
+  cors: true
+#  securityConstraints[0]:
+#    authRoles[0]: Client
+#    authRoles[1]: Owner
+#    securityCollections[0]:
+#      name: member resource
+#      patterns[0]: /api/items

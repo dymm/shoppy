@@ -1,14 +1,14 @@
 version: '3'
 
 volumes:
-  postgres_data:
+  postgresdb_data:
       driver: local
       
 services:
-  postgres:
+  postgresdb:
       image: postgres
       volumes:
-        - postgres_data:/var/lib/postgresql/data
+        - postgresdb_data:/var/lib/postgresql/data
       environment:
         POSTGRES_DB: keycloak
         POSTGRES_USER: keycloak
@@ -21,33 +21,33 @@ services:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=adminadmin
       - DB_VENDOR=POSTGRES
-      - DB_ADDR=postgres
+      - DB_ADDR=postgresdb
       - DB_DATABASE=keycloak
       - DB_USER=keycloak
       - DB_SCHEMA=public
       - DB_PASSWORD=password
     depends_on:
-      - postgres
+      - postgresdb
     ports:
         - "8081:8080"
 
-  api:
-    build: api/shoppy-api
-    image: shoppy/api:1.0.0
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Paris
-    ports:
-        - "9000:9000"
+#  api:
+#    build: api/shoppy-api
+#    image: shoppy/api:1.0.0
+#    restart: unless-stopped
+#    environment:
+#      - TZ=Europe/Paris
+#    ports:
+#        - "9000:9000"
         
-  ui:
-    build: ui
-    image: shoppy/ui:1.0.0
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Paris
-    ports:
-        - "8085:8080"
+#  ui:
+#    build: ui
+#    image: shoppy/ui:1.0.0
+#    restart: unless-stopped
+#    environment:
+#      - TZ=Europe/Paris
+#    ports:
+#        - "8085:8080"
         
   reverse-proxy:
     build: reverse_proxy
@@ -57,6 +57,13 @@ services:
       - TZ=Europe/Paris
     ports:
       - "8080:8080"
-    depends_on:
-      - api
-      - ui
+#    depends_on:
+#      - api
+#      - ui
+
+networks:
+  shoppy-network:
+    name: shoppy-network
+    driver: bridge
+  default:
+    name: shoppy-network

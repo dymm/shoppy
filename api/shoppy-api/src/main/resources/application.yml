@@ -10,7 +10,7 @@ spring:
 
 # Keycloak
 keycloak:
-  auth-server-url: http://localhost/auth
+  auth-server-url: http://keycloak/auth
   realm: shoppy
   resource: shoppy-ui
   bearer-only: false

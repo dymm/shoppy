@@ -1,5 +1,4 @@
 FROM java:8-jre
-MAINTAINER Dimitri Brancotte <dimitri.brancotte@diebold.com>
 RUN mkdir -p /usr/local/app/
 WORKDIR /usr/local/app/
 ENV PATH /usr/local/app:$PATH

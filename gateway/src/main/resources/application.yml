@@ -1,0 +1,64 @@
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: api
+          uri: http://api:9000
+          predicates:
+            - Path=/api/**
+          filters:
+            - RemoveRequestHeader=Cookie
+        - id: ui
+          uri: http://ui:4200
+          predicates:
+            - Path=/ui/**
+          filters:
+            - RemoveRequestHeader=Cookie
+        - id: auth
+          uri: http://keycloak:8080
+          predicates:
+            - Path=/auth/**
+          filters:
+            - SetPath=/auth/realms/master/protocol/openid-connect/token
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            token-uri: http://keycloak:8080/auth/realms/master/protocol/openid-connect/token
+            authorization-uri: http://keycloak:8080/auth/realms/master/protocol/openid-connect/auth
+            userinfo-uri: http://keycloak:8080/auth/realms/master/protocol/openid-connect/userinfo
+            issuer-uri: http://keycloak:8080/auth/realms/master
+            user-name-attribute: preferred_username
+        # https://docs.spring.io/spring-security/reference/5.6.0-RC1/servlet/oauth2/oauth2-client.html
+        registration:
+          keycloak-with-test-scope:
+            provider: keycloak
+            client-id: spring-with-test-scope
+            client-secret: s89OcLOGqcj0RZECp2wP8JLryLRxeNjz
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+          keycloak-without-test-scope:
+            provider: keycloak
+            client-id: spring-without-test-scope
+            client-secret: xAXMOLfaKTLJhzMNc67qJjrimpGP4ger
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE

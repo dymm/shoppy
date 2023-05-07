@@ -2,7 +2,6 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.241.1/containers/java
 {
 	"name": "Java",
-	
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": {
@@ -19,7 +18,7 @@
 	"runArgs": [
 		"--network=shoppy-network"
 	],
-	"appPort": 9000,
+	"appPort": 8080,
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -32,7 +31,6 @@
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"vscjava.vscode-java-pack",
-				"humao.rest-client",
 				"Pivotal.vscode-spring-boot",
 				"Pivotal.vscode-boot-dev-pack"
 			]
@@ -40,7 +38,7 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	//"forwardPorts": [8080],
+	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "java -version",
